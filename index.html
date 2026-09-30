@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8"><style id="qw-theme">:root {
+  --color-bg: #faf9fc !important;
+  --color-text: #131920 !important;
+  --flow-size-overview-canvas-min-height: 480px !important;
+  --color-navbar-bg: #f9f9fb !important;
+  --color-navbar-fg: #131920 !important;
+  --color-navbar-fg-muted: color-mix(in srgb, #131920 65%, #f9f9fb) !important;
+  --color-navbar-divider: #0000001f !important;
+  --color-leftnav-bg: #f9f9fb !important;
+  --color-bg-chat-view: #f9f9fb !important;
+  --color-bg-secondary: #fff !important;
+  --color-bg-tertiary: #f9fafb !important;
+  --color-bg-hover: #f3f4f6 !important;
+  --color-surface: #f9fafb !important;
+  --color-surface-hover: #f3f4f6 !important;
+  --color-surface-active: #e5e7eb !important;
+  --color-border: #0000001f !important;
+  --color-border-light: #0000000f !important;
+  --color-border-strong: #d1d5db !important;
+  --background-toggle-off-default: #fff0 !important;
+  --color-primary: #4200db !important;
+  --color-primary-dark: #35009e !important;
+  --color-primary-light: #8575ff !important;
+  --color-primary-bg: #e8e6ff !important;
+  --color-primary-hover-border: #35009e !important;
+  --color-nav-icon-active: #4200db !important;
+  --color-nav-hover-border: #4200db !important;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent) !important;
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent) !important;
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent) !important;
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent) !important;
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent) !important;
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent) !important;
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent) !important;
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent) !important;
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent) !important;
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-focus-ring: #4200db !important;
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-sidebar-hover-solid: color-mix(in srgb, #4200db 12%, #faf9fc) !important;
+  --color-selection-copy: #3b82f64d !important;
+  --color-selection-capture: color-mix(in srgb, #4200db 25%, transparent) !important;
+  --block-hover-outline: 1px dashed color-mix(in srgb, #4200db 50%, transparent) !important;
+  --block-selected-outline: 1px solid #8575ff !important;
+  --block-selection-outline-offset: 2px !important;
+  --block-selected-halo: 0 0 8px color-mix(in srgb, #4200db 40%, transparent) !important;
+  --color-accent: #4200db !important;
+  --color-accent-foreground: #4200db !important;
+  --color-accent-dark: #35009e !important;
+  --color-accent-light: #e8e6ff !important;
+  --color-accent-inverse: #fff !important;
+  --color-link: #4200db !important;
+  --color-brand-ai-gradient-start: #6842ff !important;
+  --color-brand-ai-gradient-mid: #d600ba !important;
+  --color-brand-ai-gradient-end: #ff4b14 !important;
+  --color-primary-gradient-end: #e8e6ff !important;
+  --color-primary-bg-solid: #e8e6ff !important;
+  --color-user-bubble: #f3f3f7 !important;
+  --color-user-bubble-text: #131920 !important;
+  --color-text-secondary: #5e5e5e !important;
+  --color-text-tertiary: #656871 !important;
+  --color-text-muted: #9ca3af !important;
+  --color-text-on-primary: #fff !important;
+  --color-success: #00802f !important;
+  --color-success-dark: #00471e !important;
+  --color-success-light: #d9ffd6 !important;
+  --color-success-hover: #005c26 !important;
+  --color-success-bg: #e6f5eb !important;
+  --color-success-border: #b3d9bf !important;
+  --color-success-foreground: #00802f !important;
+  --color-success-dark-foreground: #00471e !important;
+  --color-success-text: #00471e !important;
+  --color-error: #db0000 !important;
+  --color-error-dark: #700000 !important;
+  --color-error-light: #ffe0e0 !important;
+  --color-error-hover: #ffe0e0 !important;
+  --color-error-bg: #fceaea !important;
+  --color-error-border: #f2cccc !important;
+  --color-error-active-border: #db0000 !important;
+  --color-error-foreground: #db0000 !important;
+  --color-error-dark-foreground: #700000 !important;
+  --color-error-inverse: #fff !important;
+  --color-error-text: #700000 !important;
+  --color-warning: #f2b100 !important;
+  --color-warning-dark: #573a00 !important;
+  --color-warning-light: #fffbbd !important;
+  --color-warning-hover: #db9200 !important;
+  --color-warning-bg: #fef7e6 !important;
+  --color-warning-border: #f9dfa3 !important;
+  --color-warning-foreground: #f2b100 !important;
+  --color-warning-dark-foreground: #573a00 !important;
+  --color-warning-inverse: #573a00 !important;
+  --color-surface-warning: #fffbbd !important;
+  --color-text-warning: #573a00 !important;
+  --color-info: #006ce0 !important;
+  --color-info-dark: #002a66 !important;
+  --color-info-light: #d1f1ff !important;
+  --color-info-hover: #003b8f !important;
+  --color-info-bg: #ebf3fc !important;
+  --color-info-border: #b3d1f0 !important;
+  --color-info-foreground: #006ce0 !important;
+  --color-info-dark-foreground: #002a66 !important;
+  --color-info-inverse: #fff !important;
+  --color-overlay: #00000080 !important;
+  --color-shadow: #00000014 !important;
+  --color-hover: #0000000d !important;
+  --color-tooltip-bg: #000000d9 !important;
+  --color-tooltip-text: #fff !important;
+  --color-voice-purple: #8575ff !important;
+  --color-voice-purple-dark: #4200db !important;
+  --color-voice-purple-light: #8575ff !important;
+  --color-voice-red: #db0000 !important;
+  --color-voice-red-dark: #700000 !important;
+  --color-voice-amber: #f2b100 !important;
+  --color-voice-purple-glow: #4200db66 !important;
+  --color-voice-red-glow: #db000066 !important;
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace !important;
+  --text-2xs: .5625rem !important;
+  --text-xs: .625rem !important;
+  --text-sm: .6875rem !important;
+  --text-base: .75rem !important;
+  --text-md: .8125rem !important;
+  --text-lg: .875rem !important;
+  --text-xl: 1rem !important;
+  --text-2xl: 1.125rem !important;
+  --text-3xl: 1.25rem !important;
+  --text-4xl: 1.5rem !important;
+  --text-5xl: 2rem !important;
+  --spacing-1: calc(.25rem * 1) !important;
+  --spacing-1-5: calc(.25rem * 1.5) !important;
+  --spacing-2: calc(.25rem * 2) !important;
+  --spacing-3: calc(.25rem * 3) !important;
+  --spacing-4: calc(.25rem * 4) !important;
+  --spacing-5: calc(.25rem * 5) !important;
+  --spacing-6: calc(.25rem * 6) !important;
+  --spacing-7: calc(.25rem * 7) !important;
+  --spacing-8: calc(.25rem * 8) !important;
+  --spacing-9: calc(.25rem * 9) !important;
+  --spacing-10: calc(.25rem * 10) !important;
+  --border-radius-rounded-lg: 8px !important;
+  --radius-sm: 6px !important;
+  --radius-md: 10px !important;
+  --radius-card: 12px !important;
+  --radius-lg: 16px !important;
+  --radius-pill: 8px !important;
+  --shadow-sm: 0 1px 2px #0000000d !important;
+  --shadow-md: 0 4px 12px #00000014 !important;
+  --shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029 !important;
+  --color-success-bg-solid: #d9ffd6 !important;
+  --color-error-bg-solid: #ffe0e0 !important;
+  --color-error-border-solid: #ffe0e0 !important;
+  --color-warning-bg-solid: #fffbbd !important;
+  --color-warning-text: #573a00 !important;
+  --color-info-bg-solid: #d1f1ff !important;
+  --color-info-bg-solid-alt: #d1f1ff !important;
+  --color-info-text: #002a66 !important;
+  --color-info-text-alt: #002a66 !important;
+  --color-emerald: #10b981 !important;
+  --color-teal: #4ecdc4 !important;
+  --color-code-bg: #f3f3f7 !important;
+  --color-code-header-bg: #f1f3f5 !important;
+  --color-code-text: #24292e !important;
+  --color-code-border: #e1e4e8 !important;
+  --color-code-muted: #6a737d !important;
+  --color-inline-code-bg: #f3f3f7 !important;
+  --color-inline-code-text: #24292e !important;
+  --color-inline-code-border: #e1e4e8 !important;
+  --color-scrollbar-thumb: #d1d5db !important;
+  --color-scrollbar-track: transparent !important;
+  --color-graph-node-text: #333 !important;
+  --color-graph-node-text-dim: #7f8c8d !important;
+  --color-graph-edge-default: #95a5a6 !important;
+  --color-graph-edge-cross: #e67e22 !important;
+  --color-graph-edge-text: #666 !important;
+  --color-graph-edge-stroke: #fff !important;
+  --color-graph-highlight-bg: #ff6b6b !important;
+  --color-graph-highlight-border: #e74c3c !important;
+  --color-graph-search-bg: gold !important;
+  --color-graph-search-border: orange !important;
+  --color-graph-focus-border: #c0392b !important;
+  --color-graph-external-border: #95a5a6 !important;
+  --color-graph-selected-border: #4200db !important;
+  --qs-data-cat-01: #4338ca !important;
+  --qs-data-cat-02: #d97706 !important;
+  --qs-data-cat-03: #0891b2 !important;
+  --qs-data-cat-04: #8b5cf6 !important;
+  --qs-data-cat-05: #15803d !important;
+  --qs-data-cat-06: #0c4a6e !important;
+  --qs-data-cat-07: #d946ef !important;
+  --qs-data-cat-08: #65a30d !important;
+  --qs-data-cat-09: #1d4ed8 !important;
+  --qs-data-cat-10: #831843 !important;
+  --qs-data-cat-11: #c2410c !important;
+  --qs-data-cat-12: #115e59 !important;
+  --qs-data-cat-other: #737373 !important;
+  --color-graph-cat-person: #4338ca !important;
+  --color-graph-cat-module: #4338ca !important;
+  --color-graph-cat-organization: #d97706 !important;
+  --color-graph-cat-org: #d97706 !important;
+  --color-graph-cat-variable: #d97706 !important;
+  --color-graph-cat-column: #d97706 !important;
+  --color-graph-cat-project: #0891b2 !important;
+  --color-graph-cat-sheet: #0891b2 !important;
+  --color-graph-cat-url: #0891b2 !important;
+  --color-graph-cat-product: #8b5cf6 !important;
+  --color-graph-cat-class: #8b5cf6 !important;
+  --color-graph-cat-dashboard: #8b5cf6 !important;
+  --color-graph-cat-place: #15803d !important;
+  --color-graph-cat-location: #15803d !important;
+  --color-graph-cat-function: #15803d !important;
+  --color-graph-cat-event: #0c4a6e !important;
+  --color-graph-cat-date: #0c4a6e !important;
+  --color-graph-cat-service: #0c4a6e !important;
+  --color-graph-cat-creativework: #d946ef !important;
+  --color-graph-cat-doc: #d946ef !important;
+  --color-graph-cat-message: #65a30d !important;
+  --color-graph-cat-channel: #65a30d !important;
+  --color-graph-cat-email: #65a30d !important;
+  --color-graph-cat-visual: #65a30d !important;
+  --color-graph-cat-file: #1d4ed8 !important;
+  --color-graph-cat-file-aggregate: #1d4ed8 !important;
+  --color-graph-cat-code: #1d4ed8 !important;
+  --color-graph-cat-decision: #831843 !important;
+  --color-graph-cat-action: #831843 !important;
+  --color-graph-cat-observation: #831843 !important;
+  --color-graph-cat-metric: #831843 !important;
+  --color-graph-cat-topic: #c2410c !important;
+  --color-graph-cat-concept: #c2410c !important;
+  --color-graph-cat-definedterm: #c2410c !important;
+  --color-graph-cat-instruction: #c2410c !important;
+  --color-graph-cat-import: #c2410c !important;
+  --color-graph-cat-dataset: #115e59 !important;
+  --color-graph-cat-occupation: #115e59 !important;
+  --color-graph-cat-method: #115e59 !important;
+  --color-graph-cat-folder: #737373 !important;
+  --color-graph-cat-unknown: #737373 !important;
+  --color-graph-rel-contains: #bdc3c7 !important;
+  --color-graph-rel-extends: #9b59b6 !important;
+  --color-graph-rel-implements: #3498db !important;
+  --color-graph-rel-imports: #e67e22 !important;
+  --color-graph-rel-uses: #2ecc71 !important;
+  --color-graph-rel-calls: #27ae60 !important;
+  --color-graph-rel-references: #f39c12 !important;
+  --color-graph-rel-related-to: #95a5a6 !important;
+  --color-graph-rel-works-on: #e74c3c !important;
+  --color-graph-rel-owns: #1abc9c !important;
+  --color-graph-rel-depends-on: #e67e22 !important;
+  --color-graph-rel-parent-of: #bdc3c7 !important;
+  --qs-content: #fff !important;
+  --qs-main: #fff !important;
+  --qs-primary-foreground: #131920 !important;
+  --qs-secondary-foreground: #656871 !important;
+  --qs-tertiary-foreground: #9ca3af !important;
+  --qs-placeholder-foreground: #656871 !important;
+  --qs-divider: #dedee3 !important;
+  --qs-default-border: #8c8c94 !important;
+  --qs-neutral-soft: #b4b4bb !important;
+  --qs-neutral-gray-50: #f9fafb !important;
+  --qs-tertiary-background: #f9fafb !important;
+  --qs-action-hover: #f3f3f7 !important;
+  --qs-primary-default: #4200db !important;
+  --qs-primary-dark: #35009e !important;
+  --qs-primary-light: #e8e6ff !important;
+  --qs-success-default: #00802f !important;
+  --qs-error-default: #db0000 !important;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --mc-status-needs-input-bg: #fffbbd !important;
+  --mc-status-needs-input-fg: #573a00 !important;
+  --mc-status-error-bg: #ffe0e0 !important;
+  --mc-status-error-fg: #700000 !important;
+  --mc-status-running-bg: #d1f1ff !important;
+  --mc-status-running-fg: #002a66 !important;
+  --mc-badge-success-bg: #aeffa8 !important;
+  --mc-badge-success-fg: #00471e !important;
+  --mc-badge-warning-bg: #ffed4d !important;
+  --mc-badge-warning-fg: #573a00 !important;
+  --mc-schedule-tile-border: #ffe0fb !important;
+  --mc-schedule-tile-bg: color-mix(in srgb, #ffe0fb 28%, #fff) !important;
+  --safe-top: 0px !important;
+  --safe-bottom: 0px !important;
+  --safe-left: 0px !important;
+  --safe-right: 0px !important;
+  --qs-action-active: #e8e6ff !important;
+  --qs-action-disabled: #f3f3f7 !important;
+  --qs-active-border: #4200db !important;
+  --qs-application-navbar: #4200db !important;
+  --qs-application-navbar-dark: #35009e !important;
+  --qs-application-navbar-foreground: #fff !important;
+  --qs-application-navbar-light: #e8e6ff !important;
+  --qs-automation-dark: #660052 !important;
+  --qs-automation-default: #d600ba !important;
+  --qs-automation-light: #ffe0fb !important;
+  --qs-automation-medium: #b3008f !important;
+  --qs-automation-soft: #ff94f1 !important;
+  --qs-avatar-blue-bg: #d1f1ff !important;
+  --qs-avatar-blue-fg: #002a66 !important;
+  --qs-avatar-fuchsia-bg: #fce6ff !important;
+  --qs-avatar-fuchsia-fg: #590066 !important;
+  --qs-avatar-green-bg: #d9ffd6 !important;
+  --qs-avatar-green-fg: #00471e !important;
+  --qs-avatar-neutral-bg: #dedee3 !important;
+  --qs-avatar-neutral-fg: #131920 !important;
+  --qs-avatar-orange-bg: #ffe0d6 !important;
+  --qs-avatar-orange-fg: #661800 !important;
+  --qs-avatar-pink-bg: #ffe0fb !important;
+  --qs-avatar-pink-fg: #660052 !important;
+  --qs-avatar-primary-bg: #e8e6ff !important;
+  --qs-avatar-primary-fg: #35009e !important;
+  --qs-avatar-red-bg: #ffe0e0 !important;
+  --qs-avatar-red-fg: #700000 !important;
+  --qs-avatar-violet-bg: #f2e5ff !important;
+  --qs-avatar-violet-fg: #45008a !important;
+  --qs-avatar-yellow-bg: #fffbbd !important;
+  --qs-avatar-yellow-fg: #573a00 !important;
+  --qs-brand: #fff !important;
+  --qs-brand-foreground: #131920 !important;
+  --qs-brand-navbar: #131920 !important;
+  --qs-brand-navbar-dark: #000 !important;
+  --qs-brand-navbar-foreground: #fff !important;
+  --qs-brand-navbar-light: #dedee3 !important;
+  --qs-coachmark: #006ce0 !important;
+  --qs-connection-dark: #661800 !important;
+  --qs-connection-default: #db3300 !important;
+  --qs-connection-light: #ffe0d6 !important;
+  --qs-connection-soft: #ff997a !important;
+  --qs-content-inverse: #333843 !important;
+  --qs-content-inverse-active: #131920 !important;
+  --qs-contrast-foreground: #131920 !important;
+  --qs-default-badge: #b4b4bb !important;
+  --qs-default-badge-dot: #656871 !important;
+  --qs-dimension: #4200db !important;
+  --qs-dimension-experimental: #4200db !important;
+  --qs-dimension-experimental-foreground: #4200db !important;
+  --qs-dimension-foreground: #fff !important;
+  --qs-disabled: #8c8c94 !important;
+  --qs-disabled-border: #dedee3 !important;
+  --qs-disabled-foreground: #b4b4bb !important;
+  --qs-divider-light: #f3f3f7 !important;
+  --qs-error-active-border: #db0000 !important;
+  --qs-error-border: #ffe0e0 !important;
+  --qs-error-dark: #700000 !important;
+  --qs-error-foreground: #db0000 !important;
+  --qs-error-inverse: #fff !important;
+  --qs-error-light: #ffe0e0 !important;
+  --qs-error-medium: #900 !important;
+  --qs-error-soft: #ff9e9e !important;
+  --qs-focus-offset: 1px !important;
+  --qs-font-base-letter-spacing: .15px !important;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --qs-grid-gap: 16px !important;
+  --qs-grid-gap-xl: 24px !important;
+  --qs-hero-banner-button-hover: color-mix(in srgb, #fff, transparent 60%) !important;
+  --qs-hover-border: #333843 !important;
+  --qs-info-dark: #002a66 !important;
+  --qs-info-default: #006ce0 !important;
+  --qs-info-inverse: #fff !important;
+  --qs-info-light: #d1f1ff !important;
+  --qs-info-medium: #003b8f !important;
+  --qs-info-soft: #75cfff !important;
+  --qs-insight-dark: #590066 !important;
+  --qs-insight-default: #a000b8 !important;
+  --qs-insight-light: #fce6ff !important;
+  --qs-insight-soft: #f299ff !important;
+  --qs-main-foreground: #131920 !important;
+  --qs-main-secondary-foreground: #656871 !important;
+  --qs-measure: #00802f !important;
+  --qs-measure-experimental: #f2b100 !important;
+  --qs-measure-experimental-foreground: #f2b100 !important;
+  --qs-measure-foreground: #fff !important;
+  --qs-neutral-black: #000 !important;
+  --qs-neutral-dark: #333843 !important;
+  --qs-neutral-deep: #656871 !important;
+  --qs-neutral-default: #dedee3 !important;
+  --qs-neutral-light: #f3f3f7 !important;
+  --qs-neutral-lightest: #f9f9fb !important;
+  --qs-neutral-medium: #8c8c94 !important;
+  --qs-neutral-strong: #131920 !important;
+  --qs-neutral-white: #fff !important;
+  --qs-overlay: color-mix(in srgb, #131920, transparent 50%) !important;
+  --qs-primary-inverse: #fff !important;
+  --qs-primary-inverse-foreground: #fff !important;
+  --qs-primary-medium: #8575ff !important;
+  --qs-primary-soft: #b2a8ff !important;
+  --qs-secondary: #dedee3 !important;
+  --qs-secondary-dark: #b4b4bb !important;
+  --qs-secondary-light: #f3f3f7 !important;
+  --qs-spice: #ff9800 !important;
+  --qs-success-dark: #00471e !important;
+  --qs-success-inverse: #fff !important;
+  --qs-success-light: #d9ffd6 !important;
+  --qs-success-medium: #005c26 !important;
+  --qs-success-soft: #aeffa8 !important;
+  --qs-tag-default: #dedee3 !important;
+  --qs-tag-soft-border: #b4b4bb !important;
+  --qs-toggle-tile-lg: calc(.25rem * 15) !important;
+  --qs-toggle-tile-md: calc(.25rem * 12) !important;
+  --qs-toggle-tile-sm: calc(.25rem * 8) !important;
+  --qs-transparent: transparent !important;
+  --qs-visualization-dark: #45008a !important;
+  --qs-visualization-default: #7300e5 !important;
+  --qs-visualization-light: #f2e5ff !important;
+  --qs-visualization-soft: #d4a8ff !important;
+  --qs-warning-dark: #573a00 !important;
+  --qs-warning-default: #f2b100 !important;
+  --qs-warning-experimental: #f2b100 !important;
+  --qs-warning-experimental-light: #fffbbd !important;
+  --qs-warning-experimental-light-foreground: #fffbbd !important;
+  --qs-warning-inverse: #573a00 !important;
+  --qs-warning-light: #fffbbd !important;
+  --qs-warning-medium: #db9200 !important;
+  --qs-warning-soft: #ffed4d !important;
+  --qs-width-modal-lg: 1136px !important;
+  --qs-width-modal-md: 600px !important;
+  --qs-width-modal-sm: 384px !important;
+  --qs-duration-reorder: .125s !important;
+  --qs-ease-reorder: ease-in-out !important;
+  --react-pdf-text-layer: 1 !important;
+  --highlight-bg-color: #b400aa !important;
+  --highlight-selected-bg-color: #006400 !important;
+  --react-pdf-annotation-layer: 1 !important;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>") !important;
+  --input-focus-border-color: Highlight !important;
+  --input-focus-outline: 1px solid Canvas !important;
+  --input-unfocused-border-color: transparent !important;
+  --input-disabled-border-color: transparent !important;
+  --input-hover-border-color: black !important;
+  --link-outline: none !important;
+}</style>
+<title>Florida Sales Territories</title>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@12.1.2/highmaps.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@12.1.2/modules/accessibility.js"></script>
+<style>
+  :root {
+    --color-bg-secondary: #f4f5f7;
+    --color-text: #172b4d;
+    --color-text-secondary: #44546f;
+    --color-text-muted: #8993a4;
+    --color-border-light: #ebecf0;
+    --color-border: #dfe1e6;
+    --color-surface: #ffffff;
+    --color-primary: #0052CC;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  body { margin:0; padding:16px; font-family: var(--font-sans); background: var(--color-bg-secondary); }
+  #map-wrap { position: relative; max-width: 1100px; }
+  #container { height: 660px; }
+  .legend-wrap { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color: var(--color-text-secondary); background: var(--color-surface); border:1px solid var(--color-border-light); border-radius:6px; padding:4px 8px; }
+  .swatch { width:10px; height:10px; border-radius:2px; display:inline-block; }
+  h2 { margin: 0 0 4px 0; font-size:16px; color: var(--color-text); }
+  .sub { margin:0 0 12px 0; font-size:12px; color: var(--color-text-muted); }
+
+  #priority-table {
+    position: absolute;
+    left: 16px;
+    top: 200px;
+    width: 230px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    font-size: 11px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  #priority-table table { width: 100%; border-collapse: collapse; }
+  #priority-table th {
+    text-align: left;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  #priority-table td {
+    padding: 5px 8px;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border-light);
+    vertical-align: middle;
+  }
+  #priority-table tr:last-child td { border-bottom: none; }
+  .terr-cell { display:flex; align-items:center; }
+</style>
+</head>
+<body>
+  <h2>Florida Sales Territories — Population-Weighted Regions</h2>
+  <p class="sub">County-level territory map. Region size scales inversely with density: dense metro areas (Miami, Tampa Bay) cover fewer counties; sparse regions (Panhandle, Northeast) cover more.</p>
+  <div id="map-wrap">
+    <div id="container"></div>
+    <div id="priority-table">
+      <table>
+        <thead>
+          <tr><th>Territory (by priority)</th><th>Footprint</th></tr>
+        </thead>
+        <tbody id="priority-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="legend-wrap" id="legend"></div>
+
+<script>
+const DATA = [{"hc-key": "us-fl-086", "county": "Miami-Dade", "territory": "Miami Metro", "value": 0, "pop": 2791914, "zip_range": "33002\u201333299"}, {"hc-key": "us-fl-011", "county": "Broward", "territory": "Miami Metro", "value": 0, "pop": 2012945, "zip_range": "33004\u201333443"}, {"hc-key": "us-fl-087", "county": "Monroe", "territory": "Miami Metro", "value": 0, "pop": 78797, "zip_range": "33001\u201333070"}, {"hc-key": "us-fl-099", "county": "Palm Beach", "territory": "Palm Beach", "value": 1, "pop": 1577304, "zip_range": "33401\u201333499"}, {"hc-key": "us-fl-061", "county": "Indian River", "territory": "Treasure Coast (Vero Beach)", "value": 2, "pop": 174038, "zip_range": "32948\u201332978"}, {"hc-key": "us-fl-111", "county": "St. Lucie", "territory": "Treasure Coast (Vero Beach)", "value": 2, "pop": 413306, "zip_range": "34945\u201334988"}, {"hc-key": "us-fl-085", "county": "Martin", "territory": "Treasure Coast (Vero Beach)", "value": 2, "pop": 167342, "zip_range": "33455\u201334997"}, {"hc-key": "us-fl-093", "county": "Okeechobee", "territory": "Treasure Coast (Vero Beach)", "value": 2, "pop": 42875, "zip_range": "34972\u201334973"}, {"hc-key": "us-fl-095", "county": "Orange", "territory": "Orlando Metro", "value": 3, "pop": 1535016, "zip_range": "32703\u201334787"}, {"hc-key": "us-fl-117", "county": "Seminole", "territory": "Orlando Metro", "value": 3, "pop": 494104, "zip_range": "32701\u201332799"}, {"hc-key": "us-fl-097", "county": "Osceola", "territory": "Orlando Metro", "value": 3, "pop": 497560, "zip_range": "33848\u201334773"}, {"hc-key": "us-fl-009", "county": "Brevard", "territory": "Space Coast", "value": 4, "pop": 671710, "zip_range": "32754\u201332976"}, {"hc-key": "us-fl-127", "county": "Volusia", "territory": "Space Coast", "value": 4, "pop": 612039, "zip_range": "32105\u201332774"}, {"hc-key": "us-fl-057", "county": "Hillsborough", "territory": "Tampa Bay", "value": 5, "pop": 1577032, "zip_range": "33503\u201333694"}, {"hc-key": "us-fl-103", "county": "Pinellas", "territory": "Tampa Bay", "value": 5, "pop": 936729, "zip_range": "33701\u201334698"}, {"hc-key": "us-fl-101", "county": "Pasco", "territory": "Tampa Bay", "value": 5, "pop": 692842, "zip_range": "33523\u201334692"}, {"hc-key": "us-fl-081", "county": "Manatee", "territory": "Tampa Bay", "value": 5, "pop": 477444, "zip_range": "34201\u201334282"}, {"hc-key": "us-fl-115", "county": "Sarasota", "territory": "Tampa Bay", "value": 5, "pop": 483927, "zip_range": "34223\u201334295"}, {"hc-key": "us-fl-053", "county": "Hernando", "territory": "Tampa Bay", "value": 5, "pop": 225830, "zip_range": "34601\u201334661"}, {"hc-key": "us-fl-017", "county": "Citrus", "territory": "Tampa Bay", "value": 5, "pop": 173511, "zip_range": "34423\u201334487"}, {"hc-key": "us-fl-105", "county": "Polk", "territory": "Tampa Bay", "value": 5, "pop": 898146, "zip_range": "33801\u201334759"}, {"hc-key": "us-fl-071", "county": "Lee", "territory": "Southwest Florida", "value": 6, "pop": 889547, "zip_range": "33901\u201334136"}, {"hc-key": "us-fl-021", "county": "Collier", "territory": "Southwest Florida", "value": 6, "pop": 417540, "zip_range": "34101\u201334146"}, {"hc-key": "us-fl-015", "county": "Charlotte", "territory": "Southwest Florida", "value": 6, "pop": 222968, "zip_range": "33927\u201334224"}, {"hc-key": "us-fl-051", "county": "Hendry", "territory": "Southwest Florida", "value": 6, "pop": 49911, "zip_range": "33440\u201333975"}, {"hc-key": "us-fl-043", "county": "Glades", "territory": "Southwest Florida", "value": 6, "pop": 13354, "zip_range": "33471\u201334974"}, {"hc-key": "us-fl-027", "county": "DeSoto", "territory": "Southwest Florida", "value": 6, "pop": 37267, "zip_range": "34265\u201334269"}, {"hc-key": "us-fl-055", "county": "Highlands", "territory": "Southwest Florida", "value": 6, "pop": 112352, "zip_range": "33825\u201333960"}, {"hc-key": "us-fl-049", "county": "Hardee", "territory": "Southwest Florida", "value": 6, "pop": 25757, "zip_range": "33834\u201333890"}, {"hc-key": "us-fl-031", "county": "Duval", "territory": "Jacksonville / Northeast", "value": 7, "pop": 1071194, "zip_range": "32099\u201332277"}, {"hc-key": "us-fl-019", "county": "Clay", "territory": "Jacksonville / Northeast", "value": 7, "pop": 241908, "zip_range": "32003\u201332656"}, {"hc-key": "us-fl-109", "county": "St. Johns", "territory": "Jacksonville / Northeast", "value": 7, "pop": 359322, "zip_range": "32004\u201332260"}, {"hc-key": "us-fl-089", "county": "Nassau", "territory": "Jacksonville / Northeast", "value": 7, "pop": 109266, "zip_range": "32009\u201332097"}, {"hc-key": "us-fl-003", "county": "Baker", "territory": "Jacksonville / Northeast", "value": 7, "pop": 29963, "zip_range": "32040\u201332087"}, {"hc-key": "us-fl-107", "county": "Putnam", "territory": "Jacksonville / Northeast", "value": 7, "pop": 78295, "zip_range": "32007\u201332666"}, {"hc-key": "us-fl-007", "county": "Bradford", "territory": "Jacksonville / Northeast", "value": 7, "pop": 28460, "zip_range": "32042\u201332622"}, {"hc-key": "us-fl-125", "county": "Union", "territory": "Jacksonville / Northeast", "value": 7, "pop": 16735, "zip_range": "32054\u201332697"}, {"hc-key": "us-fl-035", "county": "Flagler", "territory": "Jacksonville / Northeast", "value": 7, "pop": 144436, "zip_range": "32110\u201332164"}, {"hc-key": "us-fl-001", "county": "Alachua", "territory": "Gainesville / North Central", "value": 8, "pop": 290610, "zip_range": "32601\u201332694"}, {"hc-key": "us-fl-083", "county": "Marion", "territory": "Gainesville / North Central", "value": 8, "pop": 457325, "zip_range": "32111\u201334492"}, {"hc-key": "us-fl-075", "county": "Levy", "territory": "Gainesville / North Central", "value": 8, "pop": 49396, "zip_range": "32621\u201334498"}, {"hc-key": "us-fl-041", "county": "Gilchrist", "territory": "Gainesville / North Central", "value": 8, "pop": 20845, "zip_range": "32619\u201332693"}, {"hc-key": "us-fl-029", "county": "Dixie", "territory": "Gainesville / North Central", "value": 8, "pop": 18206, "zip_range": "32359\u201332692"}, {"hc-key": "us-fl-119", "county": "Sumter", "territory": "Gainesville / North Central", "value": 8, "pop": 161283, "zip_range": "32162\u201334785"}, {"hc-key": "us-fl-023", "county": "Columbia", "territory": "Gainesville / North Central", "value": 8, "pop": 74467, "zip_range": "32024\u201332061"}, {"hc-key": "us-fl-121", "county": "Suwannee", "territory": "Gainesville / North Central", "value": 8, "pop": 48495, "zip_range": "32060\u201332094"}, {"hc-key": "us-fl-069", "county": "Lake", "territory": "Gainesville / North Central", "value": 8, "pop": 468682, "zip_range": "32102\u201334797"}, {"hc-key": "us-fl-073", "county": "Leon", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 299384, "zip_range": "32301\u201332399"}, {"hc-key": "us-fl-039", "county": "Gadsden", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 44327, "zip_range": "32324\u201332353"}, {"hc-key": "us-fl-065", "county": "Jefferson", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 16069, "zip_range": "32336\u201332361"}, {"hc-key": "us-fl-129", "county": "Wakulla", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 39056, "zip_range": "32326\u201332358"}, {"hc-key": "us-fl-077", "county": "Liberty", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 8093, "zip_range": "32321\u201332360"}, {"hc-key": "us-fl-037", "county": "Franklin", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 13104, "zip_range": "32320\u201332346"}, {"hc-key": "us-fl-123", "county": "Taylor", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 20731, "zip_range": "32347\u201332357"}, {"hc-key": "us-fl-063", "county": "Jackson", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 49321, "zip_range": "32420\u201332460"}, {"hc-key": "us-fl-013", "county": "Calhoun", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 13358, "zip_range": "32421\u201332449"}, {"hc-key": "us-fl-059", "county": "Holmes", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 20114, "zip_range": "32425\u201332464"}, {"hc-key": "us-fl-133", "county": "Washington", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 26932, "zip_range": "32427\u201332463"}, {"hc-key": "us-fl-005", "county": "Bay", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 208816, "zip_range": "32401\u201332466"}, {"hc-key": "us-fl-131", "county": "Walton", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 96480, "zip_range": "32422\u201332550"}, {"hc-key": "us-fl-091", "county": "Okaloosa", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 223515, "zip_range": "32531\u201332588"}, {"hc-key": "us-fl-113", "county": "Santa Rosa", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 214759, "zip_range": "32530\u201332583"}, {"hc-key": "us-fl-033", "county": "Escambia", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 335296, "zip_range": "32501\u201332591"}, {"hc-key": "us-fl-047", "county": "Hamilton", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 14123, "zip_range": "32052\u201332096"}, {"hc-key": "us-fl-079", "county": "Madison", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 18874, "zip_range": "32059\u201332350"}, {"hc-key": "us-fl-067", "county": "Lafayette", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 8861, "zip_range": "32008\u201332066"}, {"hc-key": "us-fl-045", "county": "Gulf", "territory": "Tallahassee / Panhandle", "value": 9, "pop": 15990, "zip_range": "32335\u201332465"}];
+const TERR = [{"name": "Miami Metro", "value": 0, "color": "#E6194B", "pop": 4883656, "counties": 3}, {"name": "Palm Beach", "value": 1, "color": "#911EB4", "pop": 1577304, "counties": 1}, {"name": "Treasure Coast (Vero Beach)", "value": 2, "color": "#9A6324", "pop": 797561, "counties": 4}, {"name": "Orlando Metro", "value": 3, "color": "#4363D8", "pop": 2526680, "counties": 3}, {"name": "Space Coast", "value": 4, "color": "#469990", "pop": 1283749, "counties": 2}, {"name": "Tampa Bay", "value": 5, "color": "#3CB44B", "pop": 5465461, "counties": 8}, {"name": "Southwest Florida", "value": 6, "color": "#F032E6", "pop": 1768696, "counties": 8}, {"name": "Jacksonville / Northeast", "value": 7, "color": "#F58231", "pop": 2079579, "counties": 9}, {"name": "Gainesville / North Central", "value": 8, "color": "#808000", "pop": 1589309, "counties": 9}, {"name": "Tallahassee / Panhandle", "value": 9, "color": "#42D4F4", "pop": 1687203, "counties": 20}];
+const LABELS = [{"lon": -80.75, "lat": 25.85, "name": "Miami Metro", "color": "#E6194B"}, {"lon": -80.35, "lat": 26.72, "name": "Palm Beach", "color": "#911EB4"}, {"lon": -80.65, "lat": 27.28, "name": "Treasure Coast (Vero Beach)", "color": "#9A6324"}, {"lon": -81.3, "lat": 28.45, "name": "Orlando Metro", "color": "#4363D8"}, {"lon": -81.0, "lat": 28.85, "name": "Space Coast", "color": "#469990"}, {"lon": -82.05, "lat": 27.9, "name": "Tampa Bay", "color": "#3CB44B"}, {"lon": -81.5, "lat": 26.55, "name": "Southwest Florida", "color": "#F032E6"}, {"lon": -81.95, "lat": 29.95, "name": "Jacksonville / Northeast", "color": "#F58231"}, {"lon": -82.4, "lat": 29.4, "name": "Gainesville / North Central", "color": "#808000"}, {"lon": -85.05, "lat": 30.35, "name": "Tallahassee / Panhandle", "color": "#42D4F4"}];
+const RANKED = [{"name": "Tampa Bay", "value": 5, "color": "#3CB44B", "pop": 5465461, "counties": 8}, {"name": "Miami Metro", "value": 0, "color": "#E6194B", "pop": 4883656, "counties": 3}, {"name": "Orlando Metro", "value": 3, "color": "#4363D8", "pop": 2526680, "counties": 3}, {"name": "Jacksonville / Northeast", "value": 7, "color": "#F58231", "pop": 2079579, "counties": 9}, {"name": "Southwest Florida", "value": 6, "color": "#F032E6", "pop": 1768696, "counties": 8}, {"name": "Tallahassee / Panhandle", "value": 9, "color": "#42D4F4", "pop": 1687203, "counties": 20}, {"name": "Gainesville / North Central", "value": 8, "color": "#808000", "pop": 1589309, "counties": 9}, {"name": "Palm Beach", "value": 1, "color": "#911EB4", "pop": 1577304, "counties": 1}, {"name": "Space Coast", "value": 4, "color": "#469990", "pop": 1283749, "counties": 2}, {"name": "Treasure Coast (Vero Beach)", "value": 2, "color": "#9A6324", "pop": 797561, "counties": 4}];
+
+fetch('https://cdn.jsdelivr.net/npm/@highcharts/map-collection@2.3.2/countries/us/us-fl-all.topo.json')
+  .then(r => r.json())
+  .then(mapData => {
+    const seriesData = DATA.map(d => ({
+      'hc-key': d['hc-key'],
+      value: d.value,
+      name: d.county,
+      territory: d.territory,
+      pop: d.pop,
+      zipRange: d.zip_range,
+    }));
+
+    Highcharts.mapChart('container', {
+      chart: { map: mapData, backgroundColor: 'transparent' },
+      title: { text: null },
+      credits: { enabled: false },
+      accessibility: { enabled: false },
+      mapNavigation: {
+        enabled: true,
+        enableMouseWheelZoom: false,
+        enableDoubleClickZoom: true,
+        buttonOptions: { verticalAlign: 'bottom' },
+      },
+      mapView: { projection: { name: 'WebMercator' } },
+      colorAxis: {
+        dataClasses: TERR.map(t => ({ from: t.value, to: t.value, color: t.color, name: t.name })),
+      },
+      legend: { enabled: false },
+      tooltip: {
+        useHTML: true,
+        formatter: function () {
+          if (this.point.territoryLabel) {
+            return '<b>' + this.point.name + '</b>';
+          }
+          return '<b>' + this.point.name + ' County</b><br/>' +
+                 'Territory: ' + this.point.territory + '<br/>' +
+                 'Population: ' + Highcharts.numberFormat(this.point.pop, 0) + '<br/>' +
+                 'ZIP codes: ' + this.point.zipRange;
+        }
+      },
+      plotOptions: {
+        map: { states: { hover: { enabled: true, borderColor: '#172B4D', borderWidth: 1.5 } } },
+      },
+      series: [
+        {
+          type: 'map',
+          name: 'Counties',
+          data: seriesData,
+          joinBy: ['hc-key', 'hc-key'],
+          borderColor: '#ffffff',
+          borderWidth: 0.6,
+          dataLabels: { enabled: false },
+          enableMouseTracking: true,
+        },
+        {
+          type: 'mappoint',
+          name: 'Territory Labels',
+          data: LABELS.map(l => ({
+            lon: l.lon, lat: l.lat, name: l.name, territoryLabel: true,
+          })),
+          marker: { radius: 0 },
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}',
+            allowOverlap: true,
+            style: {
+              fontSize: '11px',
+              fontWeight: '700',
+              color: '#172B4D',
+              textOutline: '2px #ffffff',
+            },
+          },
+          enableMouseTracking: true,
+        },
+      ],
+    });
+
+    const legend = document.getElementById('legend');
+    TERR.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'legend-item';
+      el.innerHTML = '<span class="swatch" style="background:' + t.color + '"></span>' +
+        '<span><b>' + t.name + '</b> &middot; ' + t.counties + ' counties &middot; ' +
+        Highcharts.numberFormat(t.pop, 0) + ' pop.</span>';
+      legend.appendChild(el);
+    });
+
+    const tbody = document.getElementById('priority-tbody');
+    RANKED.forEach((t, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td><div class="terr-cell">' +
+        (i + 1) + '. ' + t.name + '</div></td>' +
+        '<td></td>';
+      tbody.appendChild(tr);
+    });
+  });
+</script>
+
+
+</body></html>
